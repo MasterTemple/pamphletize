@@ -1,7 +1,17 @@
 [project]
 name = "pamphletize"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
+description = "Convert half-letter PDFs into ready-to-print folded booklets."
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+
+authors = [
+  { name = "Blake Scampone" }
+]
+
+dependencies = [
+  "pymupdf>=1.24.0",
+]
+
+[project.scripts]
+pamphletize = "pamphletize.__main__:cli"

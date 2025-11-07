@@ -67,13 +67,8 @@ def make_booklet(input_path, output_path, flip_back=False):
         print("Note: Every second sheet rotated 180° for duplex alignment.")
     print("Print double-sided (flip on short edge), actual size.")
 
-# if __name__ == "__main__":
-#     if len(sys.argv) != 3:
-#         print("Usage: uv run main.py input.pdf output.pdf")
-#         sys.exit(1)
-#     make_booklet(sys.argv[1], sys.argv[2])
-    
-if __name__ == "__main__":
+
+def cli():
     parser = argparse.ArgumentParser(description="Convert PDF into booklet layout (2-up, ordered, optional flip).")
     parser.add_argument("input", help="Input PDF file")
     parser.add_argument("output", help="Output PDF file")
@@ -82,3 +77,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     make_booklet(args.input, args.output, flip_back=args.flip_back)
+
+
+if __name__ == "__main__":
+    cli()

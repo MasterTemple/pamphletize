@@ -23,8 +23,7 @@ uv pip install pymupdf
 ## 🚀 Usage
 
 ```bash
-uv run main.py input.pdf output.pdf
-uv run main.py input.pdf output.pdf --flip-back
+uv run pamphletize input.pdf output.pdf --flip-back
 ```
 
 **Positional arguments:**
