@@ -3,10 +3,16 @@
 Create an easy-to-print **8.5"×11"** booklet (pamphlet) from a **half-letter (8.5"×5.5")** PDF.
 
 This script automatically:
-- 📄 Adds blank pages so the total page count is a multiple of 4  
-- 🔢 Reorders pages into proper booklet order (so they fold correctly)  
-- 🧩 Combines two half-sized pages into one landscape sheet  
+- 📄 Adds blank pages so the total page count is a multiple of 4
+- 🔢 Reorders pages into proper booklet order (so they fold correctly)
+- 🧩 Combines two half-sized pages into one landscape sheet
 - 🔁 Optionally flips every second sheet by 180° for duplex printers that rotate the back side
+
+---
+
+## ⛪ Purpose
+
+The goal of this program is to enable local churches and individuals to easily print their own literature.
 
 ---
 
@@ -69,15 +75,15 @@ For a 14-page input PDF (`input.pdf`):
 
 ```bash
 # Make a booklet without rotation
-uv run main.py input.pdf booklet.pdf
+uv run pamphletize input.pdf booklet.pdf
 
 # Make a booklet where every second sheet is rotated 180°
-uv run main.py input.pdf booklet.pdf --flip-back
+uv run pamphletize input.pdf booklet.pdf --flip-back
 ```
 
 ---
 
-## 🧠 Notes
+## ✏️ Notes
 
 * Each sheet (8.5"×11") contains **two 8.5"×5.5" pages**, side by side.
 * The resulting PDF is *already arranged* for booklet printing — no need to select "2 pages per sheet" in your print dialog.
@@ -85,12 +91,28 @@ uv run main.py input.pdf booklet.pdf --flip-back
 
 ---
 
-<!--
 ## 🛠️ Example Output
 
-| Input                                                                                                                                                  | Output (Printed + Folded)                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| ![Half-page layout](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Paper_size_DIY_half_letter.svg/300px-Paper_size_DIY_half_letter.svg.png) | ![Booklet layout](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Booklet-printing.svg/300px-Booklet-printing.svg.png) |
+```bash
+uv run pamphletize "./assets/input.pdf" "./assets/output.pdf" --flip-back
+```
 
-*(illustrative example only — not actual output)*
--->
+| Input                                   | Output (Printed + Folded)              |
+| --------------------------------------- | -------------------------------------- |
+| ![Half-page layout](./assets/input.pdf) | ![Booklet layout](./assets/output.pdf) |
+
+---
+
+## 🧠 Acknowledgements
+
+- [ChatGPT](https://chatgpt.com/) did a majority of the work.
+
+---
+
+## ©️ Licensing
+
+You can copy, translate, modify, and distribute this resource, without restriction, and without needing to ask permission.
+
+This resource is freely given (Matt 10:8) for the sake of the gospel.
+
+[![](./assets/sj_standard_pde.svg)](https://sellingjesus.org/free)
