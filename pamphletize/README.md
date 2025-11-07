@@ -14,4 +14,7 @@ https://chatgpt.com/c/690d0f91-c228-832d-bb09-38ed0865d790
 
 ```bash
 uv run main.py input.pdf output.pdf
+uv run main.py input.pdf output.pdf --flip-back
+
+uv run main.py "/home/dgmastertemple/Dropbox/Typst/Is Church Membership Biblical?/main.pdf" "/home/dgmastertemple/Dropbox/Typst/Is Church Membership Biblical?/pamphlet.pdf" --flip-back
 ```

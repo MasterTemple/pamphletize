@@ -1,8 +1,9 @@
 import fitz  # PyMuPDF
 import math
 import sys
+import argparse
 
-def make_booklet(input_path, output_path):
+def make_booklet(input_path, output_path, flip_back=False):
     doc = fitz.open(input_path)
     total_pages = len(doc)
 
@@ -54,14 +55,30 @@ def make_booklet(input_path, output_path):
         # Insert both pages scaled to fit
         sheet.show_pdf_page(left_rect, left_page.parent, left_page.number)
         sheet.show_pdf_page(right_rect, right_page.parent, right_page.number)
+        
+        # 🔄 Optionally rotate every second sheet
+        if flip_back and (i // 2) % 2 == 1:
+            sheet.set_rotation(180)
 
     # Save final PDF
     new_doc.save(output_path)
     print(f"✅ Created booklet-ready PDF: {output_path}")
-    print("Now print double-sided (flip on short edge), no scaling needed.")
+    if flip_back:
+        print("Note: Every second sheet rotated 180° for duplex alignment.")
+    print("Print double-sided (flip on short edge), actual size.")
 
+# if __name__ == "__main__":
+#     if len(sys.argv) != 3:
+#         print("Usage: uv run main.py input.pdf output.pdf")
+#         sys.exit(1)
+#     make_booklet(sys.argv[1], sys.argv[2])
+    
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: uv run main.py input.pdf output.pdf")
-        sys.exit(1)
-    make_booklet(sys.argv[1], sys.argv[2])
+    parser = argparse.ArgumentParser(description="Convert PDF into booklet layout (2-up, ordered, optional flip).")
+    parser.add_argument("input", help="Input PDF file")
+    parser.add_argument("output", help="Output PDF file")
+    parser.add_argument("--flip-back", action="store_true",
+                        help="Rotate every second sheet by 180° for duplex printing")
+    args = parser.parse_args()
+
+    make_booklet(args.input, args.output, flip_back=args.flip_back)
